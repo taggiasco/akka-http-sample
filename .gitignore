@@ -1,0 +1,17 @@
+/.idea
+/.idea_modules
+/.classpath
+/.project
+/.settings
+/.cache
+/.cache-main
+/.cache-tests
+/.target
+/*.log
+/RUNNING_PID
+/bin/
+/logs/
+/target/
+/project/target/
+/project/project/
+/.tmpBin/
