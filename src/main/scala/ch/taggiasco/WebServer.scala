@@ -21,28 +21,6 @@ object WebServer extends Config with Routes {
     
     val log: LoggingAdapter = Logging(system, getClass)
     
-    val routes =
-      path("")(getFromResource("public/index.html")) ~
-      path("hello") {
-        get {
-          complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>Say hello to akka-http</h1>"))
-        }
-      } ~
-      path("documentation") {
-        encodeResponse {
-          getFromResourceDirectory("public/docs")
-        }
-      } ~
-      path("random") {
-        get {
-          complete(
-            HttpEntity(
-              ContentTypes.`text/plain(UTF-8)`,
-              numbers.map(n => ByteString(s"$n\n"))
-            )
-          )
-        }
-      }
  
     val bindingFuture = Http().bindAndHandle(routes, httpInterface, httpPort)
     bindingFuture.onFailure {
