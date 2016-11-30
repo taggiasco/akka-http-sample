@@ -9,7 +9,7 @@ import akka.http.scaladsl.Http
 import akka.http.scaladsl.model.{HttpEntity, ContentTypes}
 import akka.http.scaladsl.server.Directives._
 import scala.io.StdIn
-import scala.util.Random
+import scala.util.{Failure, Random}
 
  
 object WebServer extends Config with Routes {
@@ -23,8 +23,10 @@ object WebServer extends Config with Routes {
     
  
     val bindingFuture = Http().bindAndHandle(routes, httpInterface, httpPort)
-    bindingFuture.onFailure {
-      case ex: Exception => log.error(ex, "Failed to bind to {}:{}!", httpInterface, httpPort)
+    bindingFuture.onComplete {
+      case Failure(ex) =>
+        log.error(ex, "Failed to bind to {}:{}!", httpInterface, httpPort)
+      case _ =>
     }
     println(s"Server online at http://localhost:8080/\nPress RETURN to stop...")
     StdIn.readLine() // let it run until user presses return
