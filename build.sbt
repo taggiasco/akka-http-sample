@@ -2,15 +2,15 @@ name := """akka-http-sample"""
 
 organization := "ch.taggiasco"
 
-version := "0.0.2"
+version := "0.0.3"
 
-scalaVersion := "2.12.0"
+scalaVersion := "2.12.2"
 
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 
 libraryDependencies ++= {
-  val akkaVersion     = "2.4.14"
-  val akkaHttpVersion = "10.0.0"
+  val akkaVersion     = "2.4.19"
+  val akkaHttpVersion = "10.0.9"
 
   Seq(
     "com.typesafe.akka" %% "akka-http-core"     % akkaHttpVersion,
